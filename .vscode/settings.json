@@ -1,5 +1,6 @@
 {
-    "git.enableCommitSigning": false,
     "git.enabled": true,
-    "git.enableSmartCommit": true
+    "git.confirmEmptyCommits": true,
+    "git.detectSubmodules": true,
+    "git.enableCommitSigning": false
 }

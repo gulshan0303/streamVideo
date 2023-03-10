@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const userRoutes = require('./routes/authRoutes');
+const streamRoutes = require('./routes/streamRoutes')
 const bodyParser = require('body-parser');
 const dbConnection = require('./config/dbConnection');
 const app = express();
@@ -19,7 +20,7 @@ app.use(express.json())
 // api routes
 
 app.use('/api/v1/auth',userRoutes)
-
+app.use('/api/v1/stream',streamRoutes);
 
 
 //database connection

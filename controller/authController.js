@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../model/authmodel');
 
@@ -27,7 +27,7 @@ const registerController = async (req, res) => {
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
+    res.status(201).json({message:'register successful', user, token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -38,7 +38,9 @@ const registerController = async (req, res) => {
 const loginController =  async (req, res) => {
   try {
     const { email, password } = req.body;
-
+     if(!email || !password){
+      res.json({message:"please provide email or password field"});
+     }
     // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
@@ -55,7 +57,7 @@ const loginController =  async (req, res) => {
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
+    res.status(200).json({message:"Login Succes", user, token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

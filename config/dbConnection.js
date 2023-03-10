@@ -5,7 +5,6 @@ const dbConnection = async() =>{
          await mongoose.connect(process.env.MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true,
           })
           console.log('database connected!!')
 

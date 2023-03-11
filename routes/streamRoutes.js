@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const { createShare,getSharesForVideo } = require("../controller/shareController");
 const {
   createVideo,
   getAllVideos,
   getVideoById,
   createComment,
-  likeVideo,
-  shareVideo,
+  likeAndUnlikePost,
+ 
 } = require("../controller/streamController");
 
 // middleware to verify JWT
@@ -44,9 +45,11 @@ router.get("/videos/:id", getVideoById);
 router.post("/videos/:id/comments", verifyJWT, createComment);
 
 // like a video
-router.post("/videos/:id/like", verifyJWT, likeVideo);
+router.post("/videos/:id/like", verifyJWT, likeAndUnlikePost);
 
-// share a video
-router.post("/videos/:id/share", verifyJWT, shareVideo);
+// Route for creating a new share
+router.post('/videos/:videoId/shares', verifyJWT, createShare);
+// GET all shares for a video
+router.get('/videos/:videoId/all', verifyJWT, getSharesForVideo);
 
 module.exports = router;

@@ -25,29 +25,29 @@ const userSchema = new mongoose.Schema(
         ref: "Video",
       },
     ],
-    likedVideos: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Video",
-      },
-    ],
-    comments: [
-      {
-        videoId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Video",
-        },
-        text: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        createdAt: {
-          type: Date,
-          default: Date.now,
-        },
-      },
-    ],
+    // likedVideos: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Video",
+    //   },
+    // ],
+    // comments: [
+    //   {
+    //     videoId: {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: "Video",
+    //     },
+    //     text: {
+    //       type: String,
+    //       required: true,
+    //       trim: true,
+    //     },
+    //     createdAt: {
+    //       type: Date,
+    //       default: Date.now,
+    //     },
+    //   },
+    // ],
     shares: [
       {
         videoId: {

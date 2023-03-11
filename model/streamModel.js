@@ -1,10 +1,34 @@
 const mongoose = require('mongoose');
-const User = require("../model/authmodel")
+const User = require("./authmodel")
 // define the Videos schema
 const videoSchema = new mongoose.Schema({
   title: String,
   description: String,
+  thumbnail:String,
   url: String,
+  comments: [
+    {
+      videoId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video",
+      },
+      text: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
+  likedVideos: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Video",
+    },
+  ],
   uploader_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }

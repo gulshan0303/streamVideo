@@ -27,6 +27,9 @@ const Navbar = () => {
 
             <div className="navigation">
             <ul>
+            <li>
+                    <Link to='/upload'>Upload Video</Link>
+                </li>
                 <li>
                     <Link to='/register'>Register</Link>
                 </li>

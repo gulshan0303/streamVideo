@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-
+const cors = require('cors')
 const bodyParser = require('body-parser');
 const dbConnection = require('./config/dbConnection');
 const app = express();
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Parse incoming request bodies as URL-encoded data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
-
+app.use(cors());
 
 // api routes
 
